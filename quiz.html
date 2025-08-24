@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz - Smart Learning Assistant</title>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-purple-700 text-white px-6 py-4 flex justify-between items-center shadow-md">
+    <h1 class="text-xl font-bold"><i class="fa-solid fa-clipboard-question mr-2"></i> Quiz</h1>
+    <a href="dashboard.html" class="bg-white text-purple-700 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition">
+      <i class="fa-solid fa-arrow-left mr-2"></i> Back to Dashboard
+    </a>
+  </header>
+
+  <!-- Quiz Container -->
+  <main class="flex-1 p-6 flex justify-center items-start">
+    <div class="bg-white shadow-lg rounded-xl w-full max-w-2xl p-6">
+
+      <!-- Question -->
+      <div id="quizBox">
+        <h2 id="question" class="text-lg font-bold text-gray-800 mb-4">
+          1. What does HTML stand for?
+        </h2>
+
+        <!-- Options -->
+        <div id="options" class="space-y-3">
+          <label class="flex items-center border rounded-lg p-3 cursor-pointer hover:bg-gray-50">
+            <input type="radio" name="answer" value="A" class="mr-3">
+            <span>Hyperlinks and Text Markup Language</span>
+          </label>
+          <label class="flex items-center border rounded-lg p-3 cursor-pointer hover:bg-gray-50">
+            <input type="radio" name="answer" value="B" class="mr-3">
+            <span>Hyper Text Markup Language</span>
+          </label>
+          <label class="flex items-center border rounded-lg p-3 cursor-pointer hover:bg-gray-50">
+            <input type="radio" name="answer" value="C" class="mr-3">
+            <span>Home Tool Markup Language</span>
+          </label>
+        </div>
+
+        <!-- Submit Button -->
+        <button id="submitBtn" class="mt-5 w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition flex items-center justify-center">
+          <i class="fa-solid fa-paper-plane mr-2"></i> Submit Answer
+        </button>
+
+        <!-- Feedback -->
+        <div id="feedback" class="mt-4 text-center text-lg font-semibold"></div>
+      </div>
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script>
+    const correctAnswer = "B"; // Correct answer for demo
+    const submitBtn = document.getElementById("submitBtn");
+    const feedback = document.getElementById("feedback");
+
+    submitBtn.addEventListener("click", () => {
+      const selected = document.querySelector('input[name="answer"]:checked');
+      if (!selected) {
+        feedback.innerHTML = "<span class='text-red-500'>⚠ Please select an answer.</span>";
+        return;
+      }
+      if (selected.value === correctAnswer) {
+        feedback.innerHTML = "<span class='text-green-600'>✅ Correct! Well done.</span>";
+      } else {
+        feedback.innerHTML = "<span class='text-red-600'>❌ Incorrect! Try again.</span>";
+      }
+    });
+  </script>
+</body>
+</html>
