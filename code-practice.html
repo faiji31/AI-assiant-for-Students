@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Code Practice - Smart Learning Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 flex h-screen">
+
+  <!-- Sidebar -->
+  <aside class="bg-indigo-700 text-white w-64 flex flex-col justify-between py-6 px-2 md:block hidden">
+    <div>
+      <div class="flex items-center justify-center mb-6">
+        <i class="fa-solid fa-graduation-cap text-3xl mr-2"></i>
+        <h1 class="text-xl font-bold">Smart Assistant</h1>
+      </div>
+      <nav class="space-y-4">
+        <a href="dashboard.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-house"></i><span>Dashboard</span>
+        </a>
+        <a href="courses.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-book-open"></i><span>Courses</span>
+        </a>
+        <a href="quiz.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-clipboard-question"></i><span>Quizzes</span>
+        </a>
+        <a href="code-practice.html" class="flex items-center space-x-2 px-4 py-2 bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-code"></i><span>Code Practice</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col p-6">
+
+    <h1 class="text-2xl font-bold text-gray-800 mb-4"><i class="fa-solid fa-code mr-2"></i>Code Practice</h1>
+    <p class="mb-4 text-gray-600">Select a language and practice your coding skills.</p>
+
+    <!-- Language Selector -->
+    <div class="flex flex-wrap gap-2 mb-4">
+      <button class="lang-btn bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-semibold" data-lang="html">HTML/CSS/JS</button>
+      <button class="lang-btn bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg font-semibold" data-lang="python">Python</button>
+      <button class="lang-btn bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg font-semibold" data-lang="cpp">C++</button>
+      <button class="lang-btn bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded-lg font-semibold" data-lang="oop">OOP</button>
+      <button class="lang-btn bg-red-600 hover:bg-red-700 text-white py-2 px-4 rounded-lg font-semibold" data-lang="sql">Database (SQL)</button>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-2 gap-4 h-full">
+
+      <!-- Code Editor -->
+      <div class="flex flex-col space-y-2">
+        <label id="editorLabel" class="font-semibold">HTML/CSS/JS</label>
+        <textarea id="codeEditor" class="flex-1 border rounded-lg p-2 font-mono text-sm h-96" placeholder="Write your code here..."></textarea>
+
+        <button id="runBtn" class="mt-2 bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-semibold">Run Code</button>
+      </div>
+
+      <!-- Output -->
+      <div class="flex flex-col">
+        <label class="font-semibold mb-2">Output</label>
+        <iframe id="outputFrame" class="flex-1 w-full border rounded-lg bg-white h-96"></iframe>
+        <pre id="outputText" class="flex-1 w-full border rounded-lg bg-gray-50 p-2 hidden overflow-auto h-96"></pre>
+      </div>
+
+    </div>
+
+  </div>
+
+  <script>
+    const langButtons = document.querySelectorAll(".lang-btn");
+    const editorLabel = document.getElementById("editorLabel");
+    const codeEditor = document.getElementById("codeEditor");
+    const runBtn = document.getElementById("runBtn");
+    const outputFrame = document.getElementById("outputFrame");
+    const outputText = document.getElementById("outputText");
+
+    let currentLang = "html";
+
+    langButtons.forEach(btn => {
+      btn.addEventListener("click", () => {
+        currentLang = btn.dataset.lang;
+        editorLabel.textContent = btn.textContent;
+        codeEditor.value = "";
+        outputFrame.classList.add("hidden");
+        outputText.classList.add("hidden");
+      });
+    });
+
+    runBtn.addEventListener("click", () => {
+      const code = codeEditor.value.trim();
+      if(!code) return;
+
+      if(currentLang === "html") {
+        // Run HTML/CSS/JS safely
+        const frameCode = `
+          <!DOCTYPE html>
+          <html lang="en">
+          <head>
+            <style>
+              /* Extract CSS from <style> tags in code */
+              ${extractCSS(code)}
+            </style>
+          </head>
+          <body>
+            ${extractHTML(code)}
+            <script>
+              ${extractJS(code)}
+            <\/script>
+          </body>
+          </html>
+        `;
+        outputFrame.srcdoc = frameCode;
+        outputFrame.classList.remove("hidden");
+        outputText.classList.add("hidden");
+      } else {
+        // Other languages simulation
+        outputText.textContent = `💡 ${currentLang.toUpperCase()} code execution is not supported in browser.\n\nYour code:\n${code}`;
+        outputText.classList.remove("hidden");
+        outputFrame.classList.add("hidden");
+      }
+    });
+
+    // Simple extractors (optional improvement: user can separate <style>, <script>)
+    function extractCSS(code) {
+      const styleMatch = code.match(/<style[^>]*>([\s\S]*?)<\/style>/);
+      return styleMatch ? styleMatch[1] : "";
+    }
+    function extractJS(code) {
+      const scriptMatch = code.match(/<script[^>]*>([\s\S]*?)<\/script>/);
+      return scriptMatch ? scriptMatch[1] : "";
+    }
+    function extractHTML(code) {
+      // Remove <script> and <style>
+      return code.replace(/<script[^>]*>[\s\S]*?<\/script>/g, "").replace(/<style[^>]*>[\s\S]*?<\/style>/g, "");
+    }
+  </script>
+
+</body>
+</html>

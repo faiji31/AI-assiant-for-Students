@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Diagram Practice - Smart Learning Assistant</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 flex h-screen">
+
+  <!-- Sidebar -->
+  <aside class="bg-indigo-700 text-white w-64 flex flex-col justify-between py-6 px-2 md:block hidden">
+    <div>
+      <div class="flex items-center justify-center mb-6">
+        <i class="fa-solid fa-graduation-cap text-3xl mr-2"></i>
+        <h1 class="text-xl font-bold">Smart Assistant</h1>
+      </div>
+      <nav class="space-y-4">
+        <a href="dashboard.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-house"></i><span>Dashboard</span>
+        </a>
+        <a href="courses.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-book-open"></i><span>Courses</span>
+        </a>
+        <a href="quiz.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-clipboard-question"></i><span>Quizzes</span>
+        </a>
+        <a href="notes.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-note-sticky"></i><span>Notes</span>
+        </a>
+        <a href="code-practice.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-code"></i><span>Code Practice</span>
+        </a>
+        <a href="diagram-practice.html" class="flex items-center space-x-2 px-4 py-2 bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-diagram-project"></i><span>Diagram Practice</span>
+        </a>
+        <a href="chat.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-robot"></i><span>AI Chat</span>
+        </a>
+        <a href="profile.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-user"></i><span>Profile</span>
+        </a>
+        <a href="login.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-red-600 rounded-lg">
+          <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+        </a>
+      </nav>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <div class="flex-1 flex flex-col">
+
+    <!-- Header -->
+    <header class="flex items-center justify-between bg-white shadow px-4 py-3">
+      <h2 class="text-xl font-bold text-indigo-700 flex items-center">
+        <i class="fa-solid fa-diagram-project mr-2"></i> Diagram Practice
+      </h2>
+      <img src="https://i.pravatar.cc/40" class="w-9 h-9 rounded-full border">
+    </header>
+
+    <!-- Diagram Selection -->
+    <div class="p-6 flex flex-wrap gap-4">
+      <button class="diagram-btn bg-indigo-600 hover:bg-indigo-700 text-white py-2 px-4 rounded-lg font-semibold" data-diagram="Class Diagram">Class Diagram</button>
+      <button class="diagram-btn bg-green-600 hover:bg-green-700 text-white py-2 px-4 rounded-lg font-semibold" data-diagram="Sequence Diagram">Sequence Diagram</button>
+      <button class="diagram-btn bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded-lg font-semibold" data-diagram="Use Case Diagram">Use Case Diagram</button>
+      <button class="diagram-btn bg-pink-500 hover:bg-pink-600 text-white py-2 px-4 rounded-lg font-semibold" data-diagram="Deployment Diagram">Deployment Diagram</button>
+    </div>
+
+    <!-- Placeholder Canvas -->
+    <div id="canvasArea" class="flex-1 m-6 bg-white border rounded-lg flex items-center justify-center text-gray-400 text-xl font-semibold">
+      Select a diagram type to practice here...
+    </div>
+
+  </div>
+
+  <script>
+    const diagramBtns = document.querySelectorAll(".diagram-btn");
+    const canvasArea = document.getElementById("canvasArea");
+
+    diagramBtns.forEach(btn => {
+      btn.addEventListener("click", () => {
+        const type = btn.dataset.diagram;
+        canvasArea.textContent = `${type} Workspace (draw your diagram here)`;
+      });
+    });
+  </script>
+</body>
+</html>
