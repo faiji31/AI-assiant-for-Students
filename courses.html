@@ -19,80 +19,111 @@
     </a>
   </header>
 
-  <!-- Courses Grid -->
-  <main class="flex-1 p-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+  <!-- Courses Container -->
+  <main class="flex-1 p-6 space-y-10">
 
-    <!-- Course Card -->
-    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition p-5 flex flex-col">
-      <div class="flex items-center mb-3">
-        <i class="fa-solid fa-code text-indigo-600 text-3xl mr-3"></i>
-        <h2 class="text-lg font-bold">Programming Basics</h2>
+    <!-- Section: Programming Foundations -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-indigo-800">Programming Foundations</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- CSE 100 -->
+        <div class="course-card"><i class="fa-solid fa-code text-indigo-600 text-3xl mr-3"></i><h3>CSE 100: Computer Programming</h3><p>Basics of coding, variables, loops, and logic building.</p></div>
+        <!-- CSE 200 -->
+        <div class="course-card"><i class="fa-solid fa-code-branch text-purple-600 text-3xl mr-3"></i><h3>CSE 200: Computer Programming II</h3><p>Intermediate programming with arrays, recursion, problem-solving.</p></div>
+        <!-- CSE 213 -->
+        <div class="course-card"><i class="fa-solid fa-cubes text-pink-600 text-3xl mr-3"></i><h3>CSE 213: Object Oriented Programming</h3><p>Classes, objects, inheritance, and modern OOP principles.</p></div>
       </div>
-      <p class="text-gray-600 text-sm mb-3">Learn variables, loops, and functions with interactive coding examples.</p>
-      
-      <!-- Progress -->
-      <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
-        <div class="bg-indigo-600 h-2 rounded-full" style="width: 60%"></div>
-      </div>
-      <p class="text-sm text-gray-500 mb-4">Progress: 60%</p>
+    </section>
 
-      <!-- Actions -->
-      <div class="flex justify-between mt-auto">
-        <button class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm flex items-center">
-          <i class="fa-solid fa-check mr-1"></i> Mark Complete
-        </button>
-        <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm flex items-center">
-          <i class="fa-solid fa-star mr-1"></i> Favorite
-        </button>
+    <!-- Section: Data Structures & Algorithms -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-indigo-800">Data Structures & Algorithms</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="course-card"><i class="fa-solid fa-layer-group text-green-600 text-3xl mr-3"></i><h3>CSE 203: Data Structures</h3><p>Arrays, linked lists, trees, stacks, queues, graphs.</p></div>
+        <div class="course-card"><i class="fa-solid fa-diagram-project text-blue-600 text-3xl mr-3"></i><h3>CSE 211: Algorithms</h3><p>Sorting, searching, dynamic programming, graph algorithms.</p></div>
       </div>
-    </div>
+    </section>
 
-    <!-- Course Card 2 -->
-    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition p-5 flex flex-col">
-      <div class="flex items-center mb-3">
-        <i class="fa-solid fa-square-root-variable text-green-600 text-3xl mr-3"></i>
-        <h2 class="text-lg font-bold">Mathematics</h2>
+    <!-- Section: Software Engineering -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-indigo-800">Software Engineering & Design</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="course-card"><i class="fa-solid fa-diagram-project text-orange-600 text-3xl mr-3"></i><h3>CSE 307: System Analysis and Design</h3><p>Software lifecycle, UML diagrams, requirement analysis.</p></div>
       </div>
-      <p class="text-gray-600 text-sm mb-3">Practice algebra, calculus, and problem-solving with step-by-step guidance.</p>
-      
-      <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
-        <div class="bg-green-600 h-2 rounded-full" style="width: 40%"></div>
-      </div>
-      <p class="text-sm text-gray-500 mb-4">Progress: 40%</p>
+    </section>
 
-      <div class="flex justify-between mt-auto">
-        <button class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm flex items-center">
-          <i class="fa-solid fa-check mr-1"></i> Mark Complete
-        </button>
-        <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm flex items-center">
-          <i class="fa-solid fa-star mr-1"></i> Favorite
-        </button>
+    <!-- Section: Systems & Computer Architecture -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-indigo-800">Systems & Computer Architecture</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="course-card"><i class="fa-solid fa-microchip text-red-600 text-3xl mr-3"></i><h3>CSE 204: Digital Logic Design</h3><p>Logic gates, circuits, sequential systems, combinational logic.</p></div>
+        <div class="course-card"><i class="fa-solid fa-microchip text-yellow-600 text-3xl mr-3"></i><h3>CSE 214: Computer Organization & Architecture</h3><p>CPU design, memory, instruction sets, I/O systems.</p></div>
+        <div class="course-card"><i class="fa-solid fa-microchip text-purple-600 text-3xl mr-3"></i><h3>CSE 216: Microprocessor, Interfacing & Assembly</h3><p>Assembly programming, interfacing, low-level hardware.</p></div>
       </div>
-    </div>
+    </section>
 
-    <!-- Course Card 3 -->
-    <div class="bg-white rounded-xl shadow-md hover:shadow-lg transition p-5 flex flex-col">
-      <div class="flex items-center mb-3">
-        <i class="fa-solid fa-briefcase text-blue-600 text-3xl mr-3"></i>
-        <h2 class="text-lg font-bold">Business Studies</h2>
+    <!-- Section: Operating Systems -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-indigo-800">Operating Systems</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="course-card"><i class="fa-solid fa-desktop text-indigo-600 text-3xl mr-3"></i><h3>CSE 315: Design of Operating System</h3><p>Processes, threads, scheduling, synchronization, memory management.</p></div>
       </div>
-      <p class="text-gray-600 text-sm mb-3">Understand management, finance, and marketing through real-world case studies.</p>
-      
-      <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
-        <div class="bg-blue-600 h-2 rounded-full" style="width: 20%"></div>
-      </div>
-      <p class="text-sm text-gray-500 mb-4">Progress: 20%</p>
+    </section>
 
-      <div class="flex justify-between mt-auto">
-        <button class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm flex items-center">
-          <i class="fa-solid fa-check mr-1"></i> Mark Complete
-        </button>
-        <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm flex items-center">
-          <i class="fa-solid fa-star mr-1"></i> Favorite
-        </button>
+    <!-- Section: Database Systems -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-indigo-800">Database Systems</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="course-card"><i class="fa-solid fa-database text-green-600 text-3xl mr-3"></i><h3>CSE 303: Database Management</h3><p>SQL, normalization, transactions, indexing, database design.</p></div>
       </div>
-    </div>
+    </section>
+
+    <!-- Section: Mathematics & Numerical Methods -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-indigo-800">Mathematics & Numerical Methods</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="course-card"><i class="fa-solid fa-square-root-variable text-blue-600 text-3xl mr-3"></i><h3>CSE 201: Discrete Mathematics</h3><p>Sets, relations, graphs, logic, combinatorics.</p></div>
+        <div class="course-card"><i class="fa-solid fa-calculator text-pink-600 text-3xl mr-3"></i><h3>CSE 317: Numerical Methods</h3><p>Approximation, numerical integration, differential equations.</p></div>
+      </div>
+    </section>
+
+    <!-- Section: Theory of Computation & Compilers -->
+    <section>
+      <h2 class="text-2xl font-bold mb-4 text-indigo-800">Theory of Computation & Compilers</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="course-card"><i class="fa-solid fa-diagram-project text-indigo-600 text-3xl mr-3"></i><h3>CSE 301: Finite Automata & Computability</h3><p>Regular languages, Turing machines, decidability.</p></div>
+        <div class="course-card"><i class="fa-solid fa-code text-green-600 text-3xl mr-3"></i><h3>CSE 313: Compiler Construction</h3><p>Lexical analysis, parsing, syntax trees, code generation.</p></div>
+      </div>
+    </section>
 
   </main>
+
+  <!-- Small JS for card template -->
+  <script>
+    // Turn .course-card into functional cards with buttons
+    document.querySelectorAll('.course-card').forEach(card => {
+      const title = card.querySelector('h3').innerText;
+      const icon = card.querySelector('i').outerHTML;
+      const desc = card.querySelector('p').innerText;
+      card.innerHTML = `
+        <div class="flex items-center mb-3">${icon}<h3 class="text-lg font-bold ml-2">${title}</h3></div>
+        <p class="text-gray-600 text-sm mb-3">${desc}</p>
+        <div class="w-full bg-gray-200 rounded-full h-2 mb-4">
+          <div class="bg-indigo-600 h-2 rounded-full" style="width: ${Math.floor(Math.random()*80)+10}%"></div>
+        </div>
+        <p class="text-sm text-gray-500 mb-4">Progress: Random</p>
+        <div class="flex justify-between mt-auto">
+          <button class="bg-green-500 hover:bg-green-600 text-white px-3 py-1 rounded-lg text-sm flex items-center">
+            <i class="fa-solid fa-check mr-1"></i> Mark Complete
+          </button>
+          <button class="bg-yellow-400 hover:bg-yellow-500 text-white px-3 py-1 rounded-lg text-sm flex items-center">
+            <i class="fa-solid fa-star mr-1"></i> Favorite
+          </button>
+        </div>
+      `;
+      card.classList.add("bg-white","rounded-xl","shadow-md","hover:shadow-lg","transition","p-5","flex","flex-col");
+    });
+  </script>
+
 </body>
 </html>

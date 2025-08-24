@@ -12,33 +12,60 @@
 <body class="bg-gray-100 flex h-screen">
 
   <!-- Sidebar -->
-  <aside id="sidebar" class="bg-indigo-700 text-white w-64 space-y-6 py-7 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50">
-    <!-- Logo -->
-    <div class="flex items-center justify-center mb-6">
-      <i class="fa-solid fa-graduation-cap text-3xl mr-2"></i>
-      <h1 class="text-xl font-bold">Smart Assistant</h1>
+  <aside id="sidebar" class="bg-indigo-700 text-white w-64 flex flex-col justify-between py-6 px-2 absolute inset-y-0 left-0 transform -translate-x-full md:relative md:translate-x-0 transition duration-200 ease-in-out z-50">
+    <!-- Top: Logo + Nav -->
+    <div>
+      <div class="flex items-center justify-center mb-6">
+        <i class="fa-solid fa-graduation-cap text-3xl mr-2"></i>
+        <h1 class="text-xl font-bold">Smart Assistant</h1>
+      </div>
+      <!-- Nav Links -->
+      <nav class="space-y-4">
+        <a href="dashboard.html" class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-indigo-600">
+          <i class="fa-solid fa-house"></i><span>Dashboard</span>
+        </a>
+        <a href="courses.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-book-open"></i><span>Courses</span>
+        </a>
+        <a href="quiz.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-clipboard-question"></i><span>Quizzes</span>
+        </a>
+        <a href="notes.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-note-sticky"></i><span>Notes</span>
+        </a>
+        <!-- NEW: AI Chat Option -->
+        <a href="chat.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-robot"></i><span>AI Chat</span>
+        </a>
+        <a href="profile.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
+          <i class="fa-solid fa-user"></i><span>Profile</span>
+        </a>
+        <a href="login.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-red-600 rounded-lg">
+          <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
+        </a>
+      </nav>
     </div>
-    <!-- Nav Links -->
-    <nav class="space-y-4">
-      <a href="dashboard.html" class="flex items-center space-x-2 px-4 py-2 rounded-lg bg-indigo-600">
-        <i class="fa-solid fa-house"></i><span>Dashboard</span>
-      </a>
-      <a href="courses.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
-        <i class="fa-solid fa-book-open"></i><span>Courses</span>
-      </a>
-      <a href="quiz.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
-        <i class="fa-solid fa-clipboard-question"></i><span>Quizzes</span>
-      </a>
-      <a href="notes.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
-        <i class="fa-solid fa-note-sticky"></i><span>Notes</span>
-      </a>
-      <a href="profile.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-indigo-600 rounded-lg">
-        <i class="fa-solid fa-user"></i><span>Profile</span>
-      </a>
-      <a href="login.html" class="flex items-center space-x-2 px-4 py-2 hover:bg-red-600 rounded-lg">
-        <i class="fa-solid fa-right-from-bracket"></i><span>Logout</span>
-      </a>
-    </nav>
+
+    <!-- Chat Assistant (mini sidebar chat, optional) -->
+    <div class="bg-indigo-800 rounded-lg flex flex-col h-80 overflow-hidden">
+      <div class="bg-indigo-900 p-3 flex items-center justify-between">
+        <span class="font-semibold"><i class="fa-solid fa-robot mr-2"></i>Quick AI</span>
+        <button id="toggleChat" class="text-gray-300 hover:text-white"><i class="fa-solid fa-chevron-down"></i></button>
+      </div>
+      <div id="chatMessages" class="flex-1 overflow-y-auto p-3 space-y-3 text-sm hidden">
+        <div class="flex justify-start">
+          <div class="bg-gray-200 text-gray-800 px-3 py-2 rounded-lg max-w-xs">
+            👋 Hello! Ask me anything about your courses.
+          </div>
+        </div>
+      </div>
+      <div id="chatInputBox" class="p-2 bg-indigo-900 hidden">
+        <div class="flex items-center bg-white rounded-lg overflow-hidden">
+          <input id="chatInput" type="text" placeholder="Type your question..." class="px-3 py-2 w-full outline-none">
+          <button id="sendBtn" class="px-4 bg-indigo-600 text-white"><i class="fa-solid fa-paper-plane"></i></button>
+        </div>
+      </div>
+    </div>
   </aside>
 
   <!-- Main Content -->
@@ -69,8 +96,6 @@
 
     <!-- Dashboard Content -->
     <main class="p-6 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-
-      <!-- Card 1 -->
       <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
         <div class="flex items-center space-x-4">
           <i class="fa-solid fa-chart-line text-indigo-600 text-3xl"></i>
@@ -80,8 +105,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Card 2 -->
       <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
         <div class="flex items-center space-x-4">
           <i class="fa-solid fa-clipboard-list text-green-600 text-3xl"></i>
@@ -91,8 +114,6 @@
           </div>
         </div>
       </div>
-
-      <!-- Card 3 -->
       <div class="bg-white p-6 rounded-lg shadow hover:shadow-lg transition">
         <div class="flex items-center space-x-4">
           <i class="fa-solid fa-note-sticky text-yellow-500 text-3xl"></i>
@@ -102,17 +123,46 @@
           </div>
         </div>
       </div>
-
     </main>
   </div>
 
-  <!-- JS for Sidebar Toggle -->
+  <!-- JS -->
   <script>
+    // Sidebar toggle
     const menuBtn = document.getElementById("menuBtn");
     const sidebar = document.getElementById("sidebar");
-
     menuBtn.addEventListener("click", () => {
       sidebar.classList.toggle("-translate-x-full");
+    });
+
+    // Chat toggle
+    const toggleChat = document.getElementById("toggleChat");
+    const chatMessages = document.getElementById("chatMessages");
+    const chatInputBox = document.getElementById("chatInputBox");
+    toggleChat.addEventListener("click", () => {
+      chatMessages.classList.toggle("hidden");
+      chatInputBox.classList.toggle("hidden");
+    });
+
+    // Chat functionality (demo only)
+    const sendBtn = document.getElementById("sendBtn");
+    const chatInput = document.getElementById("chatInput");
+    sendBtn.addEventListener("click", () => {
+      const msg = chatInput.value.trim();
+      if (!msg) return;
+      const userMsg = document.createElement("div");
+      userMsg.className = "flex justify-end";
+      userMsg.innerHTML = `<div class="bg-indigo-600 text-white px-3 py-2 rounded-lg max-w-xs">${msg}</div>`;
+      chatMessages.appendChild(userMsg);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      setTimeout(() => {
+        const botMsg = document.createElement("div");
+        botMsg.className = "flex justify-start";
+        botMsg.innerHTML = `<div class="bg-gray-200 text-gray-800 px-3 py-2 rounded-lg max-w-xs">🤖 ${msg}? Let me explain that...</div>`;
+        chatMessages.appendChild(botMsg);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+      }, 1000);
+      chatInput.value = "";
     });
   </script>
 </body>

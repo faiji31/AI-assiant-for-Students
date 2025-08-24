@@ -4,9 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Quiz - Smart Learning Assistant</title>
-  <!-- Tailwind -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 </head>
 <body class="bg-gray-100 min-h-screen flex flex-col">
@@ -19,38 +17,46 @@
     </a>
   </header>
 
-  <!-- Quiz Container -->
-  <main class="flex-1 p-6 flex justify-center items-start">
-    <div class="bg-white shadow-lg rounded-xl w-full max-w-2xl p-6">
+  <!-- Courses -->
+  <main class="flex-1 p-6">
+    <h2 class="text-lg font-semibold mb-4">Select a Course</h2>
+    <div id="courses" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+      <!-- HTML -->
+      <div class="bg-white p-4 rounded-xl shadow-md cursor-pointer hover:shadow-lg transition" data-course="HTML">
+        <h3 class="text-purple-700 font-bold text-lg mb-2"><i class="fa-brands fa-html5 mr-2"></i> HTML</h3>
+        <p class="text-gray-600 text-sm">Learn HTML structure and basics.</p>
+      </div>
+      <!-- CSS -->
+      <div class="bg-white p-4 rounded-xl shadow-md cursor-pointer hover:shadow-lg transition" data-course="CSS">
+        <h3 class="text-blue-600 font-bold text-lg mb-2"><i class="fa-brands fa-css3-alt mr-2"></i> CSS</h3>
+        <p class="text-gray-600 text-sm">Style your web pages beautifully.</p>
+      </div>
+      <!-- JavaScript -->
+      <div class="bg-white p-4 rounded-xl shadow-md cursor-pointer hover:shadow-lg transition" data-course="JavaScript">
+        <h3 class="text-yellow-500 font-bold text-lg mb-2"><i class="fa-brands fa-js mr-2"></i> JavaScript</h3>
+        <p class="text-gray-600 text-sm">Make web pages interactive.</p>
+      </div>
+      <!-- Programming Foundations -->
+      <div class="bg-white p-4 rounded-xl shadow-md cursor-pointer hover:shadow-lg transition" data-course="Programming Foundations">
+        <h3 class="text-indigo-600 font-bold text-lg mb-2"><i class="fa-solid fa-laptop-code mr-2"></i> Programming Foundations</h3>
+        <p class="text-gray-600 text-sm">Learn core programming courses like CSE 100, 200, OOP, and more.</p>
+      </div>
+    </div>
 
-      <!-- Question -->
-      <div id="quizBox">
-        <h2 id="question" class="text-lg font-bold text-gray-800 mb-4">
-          1. What does HTML stand for?
-        </h2>
+    <!-- Quiz Container -->
+    <div id="quizContainer" class="mt-8 hidden">
+      <h2 id="courseTitle" class="text-xl font-bold mb-4"></h2>
 
-        <!-- Options -->
-        <div id="options" class="space-y-3">
-          <label class="flex items-center border rounded-lg p-3 cursor-pointer hover:bg-gray-50">
-            <input type="radio" name="answer" value="A" class="mr-3">
-            <span>Hyperlinks and Text Markup Language</span>
-          </label>
-          <label class="flex items-center border rounded-lg p-3 cursor-pointer hover:bg-gray-50">
-            <input type="radio" name="answer" value="B" class="mr-3">
-            <span>Hyper Text Markup Language</span>
-          </label>
-          <label class="flex items-center border rounded-lg p-3 cursor-pointer hover:bg-gray-50">
-            <input type="radio" name="answer" value="C" class="mr-3">
-            <span>Home Tool Markup Language</span>
-          </label>
-        </div>
+      <!-- Topics -->
+      <div id="topics" class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6"></div>
 
-        <!-- Submit Button -->
+      <!-- Quiz Box -->
+      <div id="quizBox" class="bg-white shadow-lg rounded-xl p-6 hidden">
+        <h3 id="question" class="text-lg font-bold text-gray-800 mb-4"></h3>
+        <div id="options" class="space-y-3"></div>
         <button id="submitBtn" class="mt-5 w-full bg-purple-600 text-white py-3 rounded-lg font-semibold hover:bg-purple-700 transition flex items-center justify-center">
           <i class="fa-solid fa-paper-plane mr-2"></i> Submit Answer
         </button>
-
-        <!-- Feedback -->
         <div id="feedback" class="mt-4 text-center text-lg font-semibold"></div>
       </div>
     </div>
@@ -58,22 +64,128 @@
 
   <!-- JS -->
   <script>
-    const correctAnswer = "B"; // Correct answer for demo
-    const submitBtn = document.getElementById("submitBtn");
-    const feedback = document.getElementById("feedback");
+    const courses = document.querySelectorAll('#courses > div');
+    const quizContainer = document.getElementById('quizContainer');
+    const courseTitle = document.getElementById('courseTitle');
+    const topicsDiv = document.getElementById('topics');
+    const quizBox = document.getElementById('quizBox');
+    const questionEl = document.getElementById('question');
+    const optionsDiv = document.getElementById('options');
+    const submitBtn = document.getElementById('submitBtn');
+    const feedback = document.getElementById('feedback');
 
-    submitBtn.addEventListener("click", () => {
+    const quizData = {
+      "HTML": {
+        "Theory": [
+          { question: "What does HTML stand for?", options: ["Hyperlinks and Text Markup", "Hyper Text Markup Language", "Home Tool Markup Language"], answer: "Hyper Text Markup Language" }
+        ],
+        "Coding": [
+          { question: "Which tag is used for a paragraph?", options: ["<p>", "<div>", "<h1>"], answer: "<p>" }
+        ]
+      },
+      "CSS": {
+        "Theory": [
+          { question: "What does CSS stand for?", options: ["Cascading Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"], answer: "Cascading Style Sheets" }
+        ],
+        "Coding": [
+          { question: "Which property changes text color?", options: ["color", "font-color", "text-color"], answer: "color" }
+        ]
+      },
+      "JavaScript": {
+        "Theory": [
+          { question: "Which keyword declares a variable in JS?", options: ["var", "let", "Both"], answer: "Both" }
+        ],
+        "Coding": [
+          { question: "Which method prints to console?", options: ["console.log()", "print()", "echo()"], answer: "console.log()" }
+        ]
+      },
+      "Programming Foundations": {
+        "CSE 100": [
+          { question: "Which language is usually taught in CSE 100?", options: ["Python", "C", "Java"], answer: "C" }
+        ],
+        "CSE 200": [
+          { question: "What is the focus of CSE 200?", options: ["Basic programming", "Advanced Programming Concepts", "Database Design"], answer: "Advanced Programming Concepts" }
+        ],
+        "CSE 213": [
+          { question: "CSE 213 teaches which paradigm?", options: ["Procedural", "Object-Oriented", "Functional"], answer: "Object-Oriented" }
+        ],
+        "CSE 203": [
+          { question: "Which data structure is NOT taught in CSE 203?", options: ["Stack", "Queue", "Blockchain"], answer: "Blockchain" }
+        ],
+        "CSE 211": [
+          { question: "CSE 211 focuses on which algorithm type?", options: ["Sorting and Searching", "Networking Algorithms", "Machine Learning"], answer: "Sorting and Searching" }
+        ]
+      }
+    };
+
+    let currentQuiz = [];
+    let currentIndex = 0;
+
+    // Course click
+    courses.forEach(card => {
+      card.addEventListener('click', () => {
+        const course = card.dataset.course;
+        courseTitle.textContent = course + " Quiz";
+        quizContainer.classList.remove('hidden');
+        quizBox.classList.add('hidden');
+        feedback.innerHTML = '';
+        topicsDiv.innerHTML = '';
+
+        Object.keys(quizData[course]).forEach(topic => {
+          const btn = document.createElement('button');
+          btn.className = "bg-purple-600 text-white py-2 px-4 rounded-lg hover:bg-purple-700 transition text-sm sm:text-base";
+          btn.textContent = topic;
+          btn.addEventListener('click', () => startQuiz(course, topic));
+          topicsDiv.appendChild(btn);
+        });
+
+        quizContainer.scrollIntoView({ behavior: 'smooth' });
+      });
+    });
+
+    function startQuiz(course, topic) {
+      currentQuiz = quizData[course][topic];
+      currentIndex = 0;
+      showQuestion();
+    }
+
+    function showQuestion() {
+      if(currentIndex >= currentQuiz.length) {
+        questionEl.textContent = "🎉 Quiz Completed!";
+        optionsDiv.innerHTML = '';
+        quizBox.classList.remove('hidden');
+        feedback.innerHTML = '';
+        return;
+      }
+      const q = currentQuiz[currentIndex];
+      questionEl.textContent = q.question;
+      optionsDiv.innerHTML = '';
+      q.options.forEach(opt => {
+        const label = document.createElement('label');
+        label.className = "flex items-center border rounded-lg p-3 cursor-pointer hover:bg-gray-50";
+        label.innerHTML = `<input type="radio" name="answer" value="${opt}" class="mr-3"> ${opt}`;
+        optionsDiv.appendChild(label);
+      });
+      quizBox.classList.remove('hidden');
+      feedback.innerHTML = '';
+    }
+
+    submitBtn.addEventListener('click', () => {
       const selected = document.querySelector('input[name="answer"]:checked');
       if (!selected) {
         feedback.innerHTML = "<span class='text-red-500'>⚠ Please select an answer.</span>";
         return;
       }
-      if (selected.value === correctAnswer) {
-        feedback.innerHTML = "<span class='text-green-600'>✅ Correct! Well done.</span>";
+      const q = currentQuiz[currentIndex];
+      if(selected.value === q.answer) {
+        feedback.innerHTML = "<span class='text-green-600'>✅ Correct!</span>";
       } else {
-        feedback.innerHTML = "<span class='text-red-600'>❌ Incorrect! Try again.</span>";
+        feedback.innerHTML = `<span class='text-red-600'>❌ Incorrect! Correct: ${q.answer}</span>`;
       }
+      currentIndex++;
+      setTimeout(showQuestion, 1500);
     });
   </script>
+
 </body>
 </html>
