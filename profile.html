@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Profile - Smart Learning Assistant</title>
+  <!-- Tailwind -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- Header -->
+  <header class="bg-blue-600 text-white px-6 py-4 flex justify-between items-center shadow-md">
+    <h1 class="text-xl font-bold"><i class="fa-solid fa-user-circle mr-2"></i> Profile</h1>
+    <a href="dashboard.html" class="bg-white text-blue-600 px-4 py-2 rounded-lg font-semibold hover:bg-gray-200 transition">
+      <i class="fa-solid fa-arrow-left mr-2"></i> Back to Dashboard
+    </a>
+  </header>
+
+  <!-- Profile Content -->
+  <main class="flex-1 p-6 flex flex-col items-center">
+    
+    <!-- Profile Card -->
+    <div class="bg-white shadow-lg rounded-xl w-full max-w-2xl p-6">
+      
+      <!-- Profile Picture -->
+      <div class="flex flex-col items-center mb-6">
+        <img id="profilePic" src="https://i.pravatar.cc/120" alt="Profile Picture" class="w-28 h-28 rounded-full border-4 border-blue-600 mb-3">
+        <label for="uploadPic" class="cursor-pointer bg-blue-600 text-white px-4 py-2 rounded-lg text-sm hover:bg-blue-700 transition flex items-center">
+          <i class="fa-solid fa-camera mr-2"></i> Change Picture
+        </label>
+        <input type="file" id="uploadPic" accept="image/*" class="hidden">
+      </div>
+
+      <!-- Profile Form -->
+      <form id="profileForm" class="space-y-5">
+        <!-- Name -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Full Name</label>
+          <div class="flex items-center border rounded-lg p-2 mt-1">
+            <i class="fa-solid fa-user text-gray-400 mr-2"></i>
+            <input type="text" id="name" value="John Doe" class="w-full focus:outline-none" required>
+          </div>
+        </div>
+
+        <!-- Email -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Email</label>
+          <div class="flex items-center border rounded-lg p-2 mt-1">
+            <i class="fa-solid fa-envelope text-gray-400 mr-2"></i>
+            <input type="email" id="email" value="johndoe@email.com" class="w-full focus:outline-none" required>
+          </div>
+        </div>
+
+        <!-- Language Preference -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Preferred Language</label>
+          <select id="language" class="w-full border rounded-lg p-3 mt-1 focus:ring focus:ring-blue-300">
+            <option value="en" selected>English</option>
+            <option value="bn">বাংলা (Bangla)</option>
+          </select>
+        </div>
+
+        <!-- Change Password -->
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Change Password</label>
+          <div class="flex items-center border rounded-lg p-2 mt-1">
+            <i class="fa-solid fa-lock text-gray-400 mr-2"></i>
+            <input type="password" id="password" placeholder="Enter new password" class="w-full focus:outline-none">
+          </div>
+        </div>
+
+        <!-- Save Button -->
+        <button type="submit" class="w-full bg-blue-600 text-white py-3 rounded-lg font-semibold hover:bg-blue-700 transition flex items-center justify-center">
+          <i class="fa-solid fa-save mr-2"></i> Save Changes
+        </button>
+      </form>
+    </div>
+  </main>
+
+  <!-- JS -->
+  <script>
+    // Change profile picture preview
+    document.getElementById("uploadPic").addEventListener("change", function(event) {
+      const file = event.target.files[0];
+      if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById("profilePic").src = e.target.result;
+        }
+        reader.readAsDataURL(file);
+      }
+    });
+
+    // Handle form save
+    document.getElementById("profileForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      alert("Profile updated successfully!");
+    });
+  </script>
+</body>
+</html>
